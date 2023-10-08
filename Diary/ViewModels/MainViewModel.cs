@@ -113,18 +113,21 @@ namespace Diary.ViewModels
             {
                 new Student
                 {
+                    Id=1,
                     FirstName= "Kazimierz",
                     LastName="Szpin",
                     Group= new Group { Id = 1 }
                 },
                 new Student
                 {
+                    Id=2,
                     FirstName= "Aleks",
                     LastName="Falek",
                     Group= new Group { Id = 2 }
                 },
                  new Student
                 {
+                     Id=3,
                     FirstName= "Borys",
                     LastName="Snik",
                     Group= new Group { Id = 1 }

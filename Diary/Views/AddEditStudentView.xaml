@@ -33,7 +33,7 @@
 
         <Label  
             Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter }}" 
-                Content="Id"
+                Content="Id:"
                 Margin="5" 
                 />
         <TextBox
@@ -70,15 +70,17 @@
             Grid.Row="8"
             Grid.Column="1"
             Margin="5" 
-            ItemsSource="{Binding Student.Group}"
-            DisplayMemberPath="{Binding Student.Group.Name}"
-            SelectedValue="{Binding Student.Group.Id}"
+            ItemsSource="{Binding Groups}"
+             SelectedValue="{Binding Student.Group.Id}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+           
           
             
             />
 
 
-        <CheckBox IsChecked="{Binding Student.Activities}" Content="Zajęcia dodatkowe" Grid.Row="9" Grid.Column="1" Margin="5" />
+        <CheckBox IsChecked="{Binding Student.Activities }" Content="Zajęcia dodatkowe" Grid.Row="9" Grid.Column="1" Margin="5" />
 
         <Label Grid.Row="10" Content="Uwagi"  Margin="5" />
         <TextBox 
