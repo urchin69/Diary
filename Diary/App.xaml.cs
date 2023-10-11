@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Diary.Views
+namespace Diary
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -18,8 +18,10 @@ namespace Diary.Views
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             var metroWindow = Current.MainWindow as MetroWindow;
+
             metroWindow.ShowMessageAsync("Nieoczekiwany wyjątek", "Wystąpił nieoczekiwany wyjątek. " + Environment.NewLine + e.Exception.Message);
 
+            e.Handled = true;
         }
     }
 }

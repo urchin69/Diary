@@ -11,6 +11,7 @@ using System.Windows.Input;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Diary.Views;
+using Diary.Models.Wrappers;
 
 namespace Diary.ViewModels 
 
@@ -19,6 +20,12 @@ namespace Diary.ViewModels
     {
         public MainViewModel()
         {
+
+            using (var context = new ApplicationDbContext())
+            {
+                var students = context.Students.ToList();
+            }
+
 
 
             AddStudentCommand = new RelayCommand(AddEditStudent);
@@ -41,9 +48,9 @@ namespace Diary.ViewModels
         public ICommand DeleteStudentCommand { get; set; }
 
 
-        private Student _selectedStudent;
+        private StudentWrapper _selectedStudent;
 
-    public Student SelectedStudent
+    public StudentWrapper SelectedStudent
     {
         get { return _selectedStudent; }
         set
@@ -56,9 +63,9 @@ namespace Diary.ViewModels
 
 
 
-        private ObservableCollection<Student> _students;
+        private ObservableCollection<StudentWrapper> _students;
 
-    public ObservableCollection<Student> Students
+    public ObservableCollection<StudentWrapper> Students
     {
         get { return _students; }
         set
@@ -80,9 +87,9 @@ namespace Diary.ViewModels
         }
     }
 
-    private ObservableCollection<Group> _group;
+    private ObservableCollection<GroupWrapper> _group;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get { return _group; }
             set
@@ -96,11 +103,11 @@ namespace Diary.ViewModels
 
     private void InitGroups()
     {
-        Groups = new ObservableCollection<Group>
+        Groups = new ObservableCollection<GroupWrapper>
             {
-                new Group{Id=0, Name="Wszystkie"},
-                new Group{Id=1, Name="1A"},
-               new Group{Id=2,  Name="2A"},
+                new GroupWrapper{Id=0, Name="Wszystkie"},
+                new GroupWrapper{Id=1, Name="1A"},
+               new GroupWrapper{Id=2,  Name="2A"},
             };
         _selectedGroupId = 0;
     }
@@ -109,28 +116,28 @@ namespace Diary.ViewModels
     private void RefreshDiary()
         {
 
-            Students = new ObservableCollection<Student>
+            Students = new ObservableCollection<StudentWrapper>
             {
-                new Student
+                new StudentWrapper
                 {
                     Id=1,
                     FirstName= "Kazimierz",
                     LastName="Szpin",
-                    Group= new Group { Id = 1 }
+                    Group= new GroupWrapper { Id = 1 }
                 },
-                new Student
+                new StudentWrapper
                 {
                     Id=2,
                     FirstName= "Aleks",
                     LastName="Falek",
-                    Group= new Group { Id = 2 }
+                    Group= new GroupWrapper { Id = 2 }
                 },
-                 new Student
+                 new StudentWrapper
                 {
                      Id=3,
                     FirstName= "Borys",
                     LastName="Snik",
-                    Group= new Group { Id = 1 }
+                    Group= new GroupWrapper { Id = 1 }
                 },
 
              };
@@ -143,10 +150,10 @@ namespace Diary.ViewModels
             RefreshDiary();
         }
 
-        private bool CanRefreshStudents(object obj)
-        {
-            return true;
-        }
+        //private bool CanRefreshStudents(object obj)
+        //{
+        //    return true;
+        //}
 
         private bool CanEditDeleteStudent(object obj)
         {
@@ -169,7 +176,7 @@ namespace Diary.ViewModels
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }
