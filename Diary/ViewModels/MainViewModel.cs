@@ -21,13 +21,6 @@ namespace Diary.ViewModels
         public MainViewModel()
         {
 
-            using (var context = new ApplicationDbContext())
-            {
-                var students = context.Students.ToList();
-            }
-
-
-
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -103,9 +96,15 @@ namespace Diary.ViewModels
 
     private void InitGroups()
     {
-        Groups = new ObservableCollection<GroupWrapper>
+            using (var context = new ApplicationDbContext())
+
             {
-                new GroupWrapper{Id=0, Name="Wszystkie"},
+                var groups = context.Groups.ToList();
+            }
+
+            Groups = new ObservableCollection<GroupWrapper>
+            {
+                new GroupWrapper { Id = 0, Name = "Wszystkie" },
                 new GroupWrapper{Id=1, Name="1A"},
                new GroupWrapper{Id=2,  Name="2A"},
             };

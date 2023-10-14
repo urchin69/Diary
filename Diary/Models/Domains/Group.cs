@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Diary.Models.Domains
 {
-   public  class Group
+   public class Group
     {
 
         public Group()

@@ -1,16 +1,20 @@
-using Diary.Models.Configurations;
+
+namespace Diary
+{
+
+ using Diary.Models.Configurations;
 using Diary.Models.Domains;
 using System;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Diary
-{
+
+
+
     public class ApplicationDbContext : DbContext
     {
 
-        public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+        public ApplicationDbContext() : base("name=ApplicationDbContext")
         {
         }
         public DbSet<Student> Students { get; set; }
