@@ -80,6 +80,7 @@ namespace Diary.ViewModels
         }
     }
 
+
     private ObservableCollection<GroupWrapper> _group;
 
         public ObservableCollection<GroupWrapper> Groups
