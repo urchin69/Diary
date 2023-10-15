@@ -26,10 +26,10 @@ namespace Diary.ViewModels
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreStudents);
             
-            RefreshDiary();
+         
             InitGroups();
-          
 
+            RefreshDiary();
         }
 
        
@@ -95,7 +95,6 @@ namespace Diary.ViewModels
     private void InitGroups()
     {
             using (var context = new ApplicationDbContext())
-
             {
                 var groups = context.Groups.ToList();
             }

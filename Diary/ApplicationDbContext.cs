@@ -1,13 +1,14 @@
+using Diary.Models.Configurations;
+using Diary.Models.Domains;
+using System;
+using System.Data.Entity;
+using System.Linq;
+
 namespace Diary
 {
-    using Diary.Models.Configurations;
-    using Diary.Models.Domains;
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
     public class ApplicationDbContext : DbContext
     {
+
         public ApplicationDbContext()
             : base("name=ApplicationDbContext")
         {
@@ -23,5 +24,7 @@ namespace Diary
             modelBuilder.Configurations.Add(new GroupConfiguration());
             modelBuilder.Configurations.Add(new RatingConfiguration());
         }
+
     }
+
 }
