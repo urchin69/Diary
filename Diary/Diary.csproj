@@ -87,6 +87,8 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Converters\StudentConverter.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Migrations\202310121427197_InitialCreate.cs" />
     <Compile Include="Migrations\202310121427197_InitialCreate.Designer.cs">
       <DependentUpon>202310121427197_InitialCreate.cs</DependentUpon>
@@ -160,9 +162,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DbScripts\202310121619085_SetLastNameMaxLengthAndRequiredInStudentsTable.sql" />
   </ItemGroup>

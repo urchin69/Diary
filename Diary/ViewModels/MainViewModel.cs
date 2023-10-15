@@ -12,12 +12,14 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Diary.Views;
 using Diary.Models.Wrappers;
+using Diary.Models.Domains;
 
 namespace Diary.ViewModels 
 
 {
    public class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public MainViewModel()
         {
 
@@ -53,10 +55,7 @@ namespace Diary.ViewModels
         }
     }
 
-
-
-
-        private ObservableCollection<StudentWrapper> _students;
+    private ObservableCollection<StudentWrapper> _students;
 
     public ObservableCollection<StudentWrapper> Students
     {
@@ -80,9 +79,9 @@ namespace Diary.ViewModels
         }
     }
 
-    private ObservableCollection<GroupWrapper> _group;
+    private ObservableCollection<Group> _group;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _group; }
             set
@@ -94,17 +93,11 @@ namespace Diary.ViewModels
 
     private void InitGroups()
     {
-            using (var context = new ApplicationDbContext())
-            {
-                var groups = context.Groups.ToList();
-            }
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
 
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper { Id = 0, Name = "Wszystkie" },
-                new GroupWrapper{Id=1, Name="1A"},
-               new GroupWrapper{Id=2,  Name="2A"},
-            };
+            Groups = new ObservableCollection<Group>(groups);
+
         _selectedGroupId = 0;
     }
 
