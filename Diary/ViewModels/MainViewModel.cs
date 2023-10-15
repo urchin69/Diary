@@ -92,6 +92,7 @@ namespace Diary.ViewModels
             }
         }
 
+
     private void InitGroups()
     {
             using (var context = new ApplicationDbContext())
