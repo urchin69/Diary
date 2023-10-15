@@ -99,7 +99,6 @@ namespace Diary.ViewModels
                 var groups = context.Groups.ToList();
             }
 
-
             Groups = new ObservableCollection<GroupWrapper>
             {
                 new GroupWrapper { Id = 0, Name = "Wszystkie" },
