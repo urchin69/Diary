@@ -106,12 +106,12 @@ namespace Diary.ViewModels
 
         private void UpdateStudent()
         {
-            //baza danych
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            //baza danych
+            _repository.AddStudent(Student);
         }
 
         private void Close(object obj)
@@ -131,7 +131,7 @@ namespace Diary.ViewModels
 
             Groups = new ObservableCollection<Group>(groups);
 
-            Student.Group.Id= 0;
+            SelectedGroupId=Student.Group.Id;
         }
 
 
